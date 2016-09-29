@@ -1,0 +1,14 @@
+{
+  "name": "AppsomeApp",
+  "version": "0.1.0",
+  "description": "AppsomeApp application built with Electron",
+  "author": {
+    "name": "Alberto Miranda &lt;b3rt.js@gmail.com&gt;",
+    "email": ""
+  },
+  "license": "MIT",
+  "main": "javascripts/main/index.js",
+  "dependencies": {
+
+  }
+}
