@@ -1,7 +1,7 @@
 {
-  "name": "AppsomeApp",
+  "name": "ThingsomeApp",
   "version": "0.1.0",
-  "description": "Desktop application build with Electron",
+  "description": "Sample client to connect and interact with a thingsome IOT device.",
   "repository": "",
   "scripts": {
     "postinstall": "install-app-deps"
