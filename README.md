@@ -1,7 +1,8 @@
-# AppsomeApp
+# thingsome-app
+Sample client to connect and interact with a "thingsome" IOT device.
 
-> My AppsomeApp app built with Electron
-
+**thingsome** repo:
+https://github.com/codealchemist/thingsome
 
 ## Dev
 
