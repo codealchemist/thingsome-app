@@ -14,3 +14,8 @@ Then start the native container (electron app):
 
 `npm start`
 
+### Development
+
+For stuff that doesn't require native integration you can just start a web server and view changes in the browser while you work.
+
+`npm run dev`
