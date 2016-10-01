@@ -1,8 +1,8 @@
 import React from 'react';
 // import 'react-toolbox/lib/commons.scss';           // Import common styles
-import CustomAppBar from './AppBar.js';      // AppBar with simple overrides
-import SuccessButton from './SuccessButton.js';    // A button with complex overrides
-import { Button } from 'react-toolbox/lib/button'; // Bundled component import
+import Header from '../header/Header.js';      // AppBar with simple overrides
+import SuccessButton from '../button/SuccessButton.js';    // A button with complex overrides
+// import { Button } from 'react-toolbox/lib/button'; // Bundled component import
 import { Card, CardMedia, CardTitle, CardText, CardActions } from 'react-toolbox/lib/card';
 
 let welcome = (
@@ -32,7 +32,7 @@ let welcome = (
 
 const App = () => (
   <div>
-    <CustomAppBar />
+    <Header />
     {welcome}
   </div>
 );

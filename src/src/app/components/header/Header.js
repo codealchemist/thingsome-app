@@ -3,15 +3,15 @@ import { AppBar } from 'react-toolbox/lib/app_bar';
 import Logo from './Logo.js';
 import theme from './DarkAppBar.scss';
 
-const CustomAppBar = ({ children, ...other }) => (
+const Header = ({ children, ...other }) => (
   <AppBar {...other} theme={theme}>
     <Logo /> Thingsome App
     {children}
   </AppBar>
 );
 
-CustomAppBar.propTypes = {
+Header.propTypes = {
   children: PropTypes.node
 };
 
-export default CustomAppBar;
+export default Header;
