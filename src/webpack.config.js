@@ -31,7 +31,14 @@ module.exports = {
         exclude: /(node_modules)/,
         loader: 'babel',
         query: { presets: ['es2015', 'stage-0', 'react'] }
-      }, {
+      },
+      {
+        exclude: /(node_modules)/,
+        include: /(components\/*.scss)/,
+        test: /\.scss$/,
+        loader: ExtractTextPlugin.extract('style', 'css?sourceMap&modules&importLoaders=1!postcss!sass')
+      },
+      {
         test: /(\.scss|\.css)$/,
         loader: ExtractTextPlugin.extract('style', 'css?sourceMap&modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!postcss!sass')
       }

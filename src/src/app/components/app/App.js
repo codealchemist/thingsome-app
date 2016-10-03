@@ -2,39 +2,94 @@ import React from 'react';
 // import 'react-toolbox/lib/commons.scss';           // Import common styles
 import Header from '../header/Header.js';      // AppBar with simple overrides
 import SuccessButton from '../button/SuccessButton.js';    // A button with complex overrides
-// import { Button } from 'react-toolbox/lib/button'; // Bundled component import
 import { Card, CardMedia, CardTitle, CardText, CardActions } from 'react-toolbox/lib/card';
+import Welcome from '../welcome/Welcome.js';
+import Register1 from '../register/Register1.js';
+import Register2 from '../register/Register2.js';
+import Register3 from '../register/Register3.js';
+import Register4 from '../register/Register4.js';
+import Info from '../info/Info.js';
+import DeviceList from '../device-list/DeviceList.js';
 
-let welcome = (
-  <Card style={{width: '400px', margin: '20px auto'}}>
-    <CardTitle
-      avatar="https://pbs.twimg.com/profile_images/378800000261610302/89cf1df7a56c30b8c3af41e9927a473f_bigger.jpeg"
-      title="Alberto Miranda"
-      subtitle="Co-Founder @thingsome"
-    />
-    <CardMedia
-      aspectRatio="wide"
-      image="https://o.lnwfile.com/_/o/_raw/t2/qe/ev.jpg"
-    />
-    <CardTitle
-      title="Welcome to the Future!"
-      subtitle="Thingsome is an amazing tool to make your home smarter!"
-    />
-    <CardText>
-      We well help you setup your Thingsome devices. <br />
-      Grab your Thingsome and get ready to have some fun! ;)
-    </CardText>
-    <CardActions>
-      <SuccessButton style={{margin: 'auto'}} label="Let's start!" primary raised />
-    </CardActions>
-  </Card>
-)
+class App extends React.Component {
+  constructor(props) {
+    super(props);
 
-const App = () => (
-  <div>
-    <Header />
-    {welcome}
-  </div>
-);
+    this.state = {
+      viewSequence: ['welcome', 'register1', 'register2', 'info', 'register3', 'register4', 'deviceList'],
+      currentViewIndex: 0,
+      currentDevice: {}
+    };
+  }
+
+  getViews() {
+    return {
+      welcome: <Welcome next={() => this.next()} prev={() => this.prev()} />,
+      register1: <Register1 next={() => this.next()} prev={() => this.prev()} />,
+      register2: <Register2 
+        setCurrentDevice={(data) => this.setCurrentDevice(data)}
+        next={() => this.next()}
+        prev={() => this.prev()} />,
+      info: <Info {...this.state.currentDevice} next={() => this.next()} prev={() => this.prev()} />,
+      register3: <Register3 
+        setDeviceIp={(data) => this.setDeviceIp(data)}
+        next={() => this.next()} 
+        prev={() => this.prev()} />,
+      register4: <Register4 next={() => this.next()} prev={() => this.prev()} />,
+      deviceList: <DeviceList />
+    };
+  }
+
+  setDeviceIp(data) {
+    console.log('set device ip:', data);
+    this.state.currentDeviceIp = data.ip;
+    this.setState(this.state);
+  }
+
+  setCurrentDevice(data) {
+    console.log('set current device:', data);
+    this.state.currentDevice = data;
+    this.setState(this.state);
+  }
+
+  next() {
+    console.log('app next');
+    let totalViews = this.state.viewSequence.length;
+    if (this.state.currentViewIndex === totalViews - 1) {
+      console.log('no more views');
+      return;
+    }
+    let nextViewIndex = ++this.state.currentViewIndex;
+    this.setState({currentViewIndex: nextViewIndex});
+  }
+
+  prev() {
+    console.log('app next');
+    let totalViews = this.state.viewSequence.length;
+    if (this.state.currentViewIndex === 0) {
+      console.log('already on first view');
+      return;
+    }
+    let prevViewIndex = --this.state.currentViewIndex;
+    this.setState({currentViewIndex: prevViewIndex});
+  }
+
+  getView(viewIndex) {
+    viewIndex = viewIndex || 0;
+    let viewName = this.state.viewSequence[viewIndex];
+    console.log('get view, name:', viewName);
+    let views = this.getViews();
+    return views[viewName];
+  }
+
+  render() {
+    return (
+      <div>
+        <Header />
+        {this.getView(this.state.currentViewIndex)}
+      </div>
+    )
+  }
+};
 
 export default App;

@@ -1,0 +1,39 @@
+.overlay {
+  margin: -10px;
+  padding: 10px;
+  position: relative;
+
+  &.active {
+    .overlay-background {
+      display: block;
+    }
+
+    .overlay-content {
+      display: flex;
+    }
+  }  
+}
+
+.overlay-background {
+  display: none;
+  background: white;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  margin: 0 -10px;
+  opacity: 0.5;
+  z-index: 10;
+}
+
+.overlay-content {
+  display: none;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  align-items: center;
+  justify-content: center;
+  z-index: 20;
+}
