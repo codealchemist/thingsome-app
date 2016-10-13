@@ -4,7 +4,7 @@
   "description": "A minimal Electron application",
   "main": "main.js",
   "scripts": {
-    "start": "electron .",
+    "start": "npm run build && electron .",
     "build": "echo BUILDING REACT APP... && cd src && npm run build && cd ..",
     "dev": "echo STARTING REACT APP LOCAL SERVER... && cd src && npm start && cd .."
   },

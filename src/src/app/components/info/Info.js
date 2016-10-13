@@ -20,9 +20,9 @@ class Info extends React.Component {
   }
 
   saveName() {
-    // TODO: persist name for this thingsome id
+    // TODO: add validations
     console.log(`thingsome named as ${this.state.name}`);
-
+    this.props.setDeviceName(this.state.name.trim();
     this.props.next();
   }
 

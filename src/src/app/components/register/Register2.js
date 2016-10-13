@@ -73,10 +73,10 @@ class Register2 extends React.Component {
             console.log('--- JSON:', info);
 
             this.props.setCurrentDevice({
-              id: info.id,
-              type: info.type,
-              name: info.name,
-              description: info.description
+              id: info.id.trim(),
+              type: info.type.trim(),
+              name: info.name.trim(),
+              description: info.description.trim()
             });
 
             this.props.next();

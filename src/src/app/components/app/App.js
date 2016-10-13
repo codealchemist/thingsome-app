@@ -20,6 +20,8 @@ class App extends React.Component {
       currentViewIndex: 0,
       currentDevice: {}
     };
+
+    this.deviceList = new DeviceList();
   }
 
   getViews() {
@@ -30,7 +32,10 @@ class App extends React.Component {
         setCurrentDevice={(data) => this.setCurrentDevice(data)}
         next={() => this.next()}
         prev={() => this.prev()} />,
-      info: <Info {...this.state.currentDevice} next={() => this.next()} prev={() => this.prev()} />,
+      info: <Info {...this.state.currentDevice}
+        setDeviceName={(name) => this.setDeviceName(name)}
+        next={() => this.next()}
+        prev={() => this.prev()} />,
       register3: <Register3 
         setDeviceIp={(data) => this.setDeviceIp(data)}
         next={() => this.next()} 
@@ -42,14 +47,33 @@ class App extends React.Component {
 
   setDeviceIp(data) {
     console.log('set device ip:', data);
-    this.state.currentDeviceIp = data.ip;
+    this.state.currentDevice.ip = data.ip;
     this.setState(this.state);
+
+    this.deviceList.update(this.state.currentDevice);
+  }
+
+  setDeviceName(name) {
+    console.log('set device name:', name);
+    this.state.currentDevice.name = name;
+    this.setState(this.state);
+
+    this.deviceList.update(this.state.currentDevice);
   }
 
   setCurrentDevice(data) {
     console.log('set current device:', data);
     this.state.currentDevice = data;
     this.setState(this.state);
+
+    // update existing device
+    if (this.deviceList.exists(data.id)) {
+      this.deviceList.update(data);
+      return;
+    }
+
+    // add new device
+    this.deviceList.add(data);
   }
 
   next() {
