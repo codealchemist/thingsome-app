@@ -1,13 +1,14 @@
 import React from 'react';
-import SuccessButton from '../button/SuccessButton.js';    // A button with complex overrides
+import SuccessButton from '../../button/SuccessButton.js';    // A button with complex overrides
 import { Card, CardMedia, CardTitle, CardText, CardActions } from 'react-toolbox/lib/card';
 import { Button } from 'react-toolbox/lib/button';
 import Dialog from 'react-toolbox/lib/dialog';
 import ProgressBar from 'react-toolbox/lib/progress_bar';
-import Thingsome from '../thingsome/Thingsome.js';
-import Overlay from '../overlay/Overlay.js';
-import OverlayContent from '../overlay/OverlayContent.js';
-import QueryString from '../helpers/QueryString.js';
+import Thingsome from '../../thingsome/Thingsome.js';
+import Overlay from '../../overlay/Overlay.js';
+import OverlayContent from '../../overlay/OverlayContent.js';
+import QueryString from '../../helpers/QueryString.js';
+import AvatarBert from '../../avatar/AvatarBert.js';
 
 let thingsome = new Thingsome();
 
@@ -60,7 +61,7 @@ class Register2 extends React.Component {
           // error
           if (response.status !== 200) {
             this.showDialog({
-              title: 'Error', 
+              title: 'Error',
               message: 'We were unable to identify your Thingsome :('
             });
             return;
@@ -86,7 +87,7 @@ class Register2 extends React.Component {
           console.log('--- get info error:', error);
           this.hideOverlay();
           this.showDialog({
-            title: 'Connection Error', 
+            title: 'Connection Error',
             message: 'Unable to connect. Is your Thingsome powered on? Are you connected to its access point?'
           });
         }
@@ -107,15 +108,13 @@ class Register2 extends React.Component {
         </Dialog>
 
         <Card style={{width: '400px', margin: '20px auto'}}>
-          <CardTitle
-            avatar="https://pbs.twimg.com/profile_images/378800000261610302/89cf1df7a56c30b8c3af41e9927a473f_bigger.jpeg"
-            title="Alberto Miranda"
-            subtitle="Co-Founder @thingsome"
-          />
+          <AvatarBert />
+
           <CardMedia
             aspectRatio="wide"
-            image="https://o.lnwfile.com/_/o/_raw/t2/qe/ev.jpg"
+            image="/img/nodemcu.jpg"
           />
+
           <Overlay active={this.state.isOverlayActive}>
             <CardTitle
               title="Connect to your Thingsome"
@@ -133,7 +132,7 @@ class Register2 extends React.Component {
               to make the AP name unique.<br /><br />
 
               Connect your computer to this access point.
-            
+
             </CardText>
             <CardActions>
               <Button onClick={this.props.prev} style={{margin: 'auto'}} label="Prev" />

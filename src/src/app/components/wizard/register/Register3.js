@@ -1,14 +1,15 @@
 import React from 'react';
-import SuccessButton from '../button/SuccessButton.js';    // A button with complex overrides
+import SuccessButton from '../../button/SuccessButton.js';    // A button with complex overrides
 import { Card, CardMedia, CardTitle, CardText, CardActions } from 'react-toolbox/lib/card';
 import { Button } from 'react-toolbox/lib/button';
 import Input from 'react-toolbox/lib/input';
 import ProgressBar from 'react-toolbox/lib/progress_bar';
 import Dialog from 'react-toolbox/lib/dialog';
-import Overlay from '../overlay/Overlay.js';
-import OverlayContent from '../overlay/OverlayContent.js';
-import Thingsome from '../thingsome/Thingsome.js';
-import QueryString from '../helpers/QueryString.js';
+import Overlay from '../../overlay/Overlay.js';
+import OverlayContent from '../../overlay/OverlayContent.js';
+import Thingsome from '../../thingsome/Thingsome.js';
+import QueryString from '../../helpers/QueryString.js';
+import AvatarBert from '../../avatar/AvatarBert.js';
 
 let thingsome = new Thingsome();
 
@@ -54,7 +55,7 @@ class Register3 extends React.Component {
           // error
           if (response.status !== 200) {
             this.showDialog({
-              title: 'Unable to Connect', 
+              title: 'Unable to Connect',
               message: 'Unable to connect to your WiFi network with the provided credentials. Please, double check they are OK.'
             });
             return;
@@ -76,7 +77,7 @@ class Register3 extends React.Component {
           console.log('--- setup error:', error);
           this.hideOverlay();
           this.showDialog({
-            title: 'Connection Error', 
+            title: 'Connection Error',
             message: 'Unable to connect. Is your Thingsome powered on? Are you connected to its access point?'
           });
         }
@@ -119,15 +120,13 @@ class Register3 extends React.Component {
         </Dialog>
 
         <Card style={{width: '400px', margin: '20px auto'}}>
-          <CardTitle
-            avatar="https://pbs.twimg.com/profile_images/378800000261610302/89cf1df7a56c30b8c3af41e9927a473f_bigger.jpeg"
-            title="Alberto Miranda"
-            subtitle="Co-Founder @thingsome"
-          />
+          <AvatarBert />
+
           <CardMedia
             aspectRatio="wide"
-            image="https://o.lnwfile.com/_/o/_raw/t2/qe/ev.jpg"
+            image="/img/nodemcu.jpg"
           />
+
           <Overlay active={this.state.isOverlayActive}>
             <OverlayContent>
               <ProgressBar type="circular" mode="indeterminate" />

@@ -1,6 +1,7 @@
 import React from 'react';
 import { List, ListItem, ListSubHeader, ListDivider, ListCheckbox } from 'react-toolbox/lib/list';
 import Storage from '../storage/Storage.js';
+import Info from '../info/Info.js';
 
 class DeviceList extends React.Component {
   constructor() {
@@ -8,6 +9,10 @@ class DeviceList extends React.Component {
 
     this.storageId = 'devices';
     this.storage = new Storage();
+    this.state = {
+      currentView: 'default',
+      currentDevice: {}
+    };
   }
 
   test() {
@@ -65,29 +70,82 @@ class DeviceList extends React.Component {
     return device;
   }
 
-  render() {
+  isEmpty() {
+    if(this.getAll().length) return false;
+    return true;
+  }
+
+  getDevicesHtml() {
+    let devices = this.getAll()
+
+    // no devices
+    let devicesHtml
+    if (!devices) {
+      devicesHtml = '<h3>No devices yet.</h3>'
+      return devicesHtml
+    }
+
+    // has devices
+    devicesHtml = devices.map((device) => {
+      return <ListItem
+        key={device.id}
+        avatar="/img/nodemcu.jpg"
+        caption={device.name}
+        legend={device.type}
+        rightIcon="star"
+        onClick={() => this.showDevice(device)} />
+    })
+
+    return devicesHtml
+  }
+
+  showDevice(device) {
+    console.log('--- show device:', device);
+    this.state.currentDevice = device;
+    this.state.currentView = 'info';
+    this.setState(this.state);
+  }
+
+  getDefaultView() {
+    let devicesHtml = this.getDevicesHtml()
+
     return (
       <List selectable ripple>
         <ListSubHeader caption="Your Thingsome Devices" />
-        <ListItem
-          avatar="https://dl.dropboxusercontent.com/u/2247264/assets/m.jpg"
-          caption='Bedroom light'
-          legend="switch"
-          rightIcon="star"
-        />
-        <ListItem
-          avatar="https://dl.dropboxusercontent.com/u/2247264/assets/o.jpg"
-          caption="Hall light"
-          legend="switch"
-          rightIcon="star"
-        />
-        <ListItem
-          avatar="https://dl.dropboxusercontent.com/u/2247264/assets/r.jpg"
-          caption="Living RGB led"
-          legend="rgb-led"
-          rightIcon="star"
-        />
+          {devicesHtml}
       </List>
+    )
+  }
+
+  getViews() {
+    return {
+      default: this.getDefaultView(),
+      info: <Info {...this.state.currentDevice}
+        setDeviceName={(name) => this.setDeviceName(name)}
+        prev={() => this.changeView('default')} />
+    };
+  }
+
+  changeView(viewName) {
+    this.state.currentView = viewName;
+    this.setState(this.state);
+  }
+
+  setDeviceName(name) {
+    this.state.currentDevice.name = name;
+    this.setState(this.state);
+    this.update(this.state.currentDevice);
+  }
+
+
+  getView(viewName) {
+    let views = this.getViews();
+    return views[viewName];
+  }
+
+  render() {
+    return (
+      this.getView(this.state.currentView)
     )
   }
 }

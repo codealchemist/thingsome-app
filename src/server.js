@@ -18,10 +18,11 @@ const middleware = webpackDevMiddleware(compiler, {
 
 app.use(middleware);
 app.use(webpackHotMiddleware(compiler));
+app.use(express.static('./src/www/'));
 
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, './src/www/index.html'));
-});
+// app.get('*', (req, res) => {
+//   res.sendFile(path.join(__dirname, './src/www/index.html'));
+// });
 
 const port = 8080;
 const ip = internalIp.v4();

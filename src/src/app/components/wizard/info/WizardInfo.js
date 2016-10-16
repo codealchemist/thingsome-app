@@ -1,12 +1,12 @@
 import React from 'react';
-import SuccessButton from '../button/SuccessButton.js';    // A button with complex overrides
+import SuccessButton from '../../button/SuccessButton.js';    // A button with complex overrides
 import { Card, CardMedia, CardTitle, CardText, CardActions } from 'react-toolbox/lib/card';
 import { Button } from 'react-toolbox/lib/button';
 import Input from 'react-toolbox/lib/input';
 import Chip from 'react-toolbox/lib/chip';
-import AvatarBert from '../avatar/AvatarBert.js';
+import AvatarBert from '../../avatar/AvatarBert.js';
 
-export default class Info extends React.Component {
+export default class WizardInfo extends React.Component {
   constructor() {
     super();
 
@@ -24,7 +24,7 @@ export default class Info extends React.Component {
     // TODO: add validations
     console.log(`thingsome named as ${this.state.name}`);
     this.props.setDeviceName(this.state.name.trim());
-    this.props.prev();
+    this.props.next();
   }
 
   render() {
@@ -39,11 +39,11 @@ export default class Info extends React.Component {
 
         <CardTitle
           title="Your Thingsome"
-          subtitle=""
+          subtitle="Yay! We just spoke to your Thingsome device!"
         />
 
         <CardText>
-          Details:<br /><br />
+          Your Thingsome just gave us some information about itself:<br /><br />
 
           <Chip>ID: {this.props.id}</Chip><br />
           <Chip>Type: {this.props.type}</Chip><br />
@@ -51,7 +51,7 @@ export default class Info extends React.Component {
           <Chip>Description: {this.props.description}</Chip><br />
           <br />
 
-          Change Thingsome name:<br />
+          Let's give your Thingsome a name, so you can easily find it in your list:<br />
           <Input
             type='text'
             label='NAME'
@@ -61,9 +61,10 @@ export default class Info extends React.Component {
             onChange={(value) => this.updateState('name', value)}
           />
         </CardText>
+
         <CardActions>
           <Button onClick={this.props.prev} style={{margin: 'auto'}} label="Prev" />
-          <SuccessButton onClick={() => this.saveName()} style={{margin: 'auto'}} label="Save" primary raised />
+          <SuccessButton onClick={() => this.saveName()} style={{margin: 'auto'}} label="Next" primary raised />
         </CardActions>
       </Card>
     )

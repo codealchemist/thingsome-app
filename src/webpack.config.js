@@ -65,7 +65,7 @@ module.exports = {
     }),
     new CopyWebpackPlugin([
       {
-        from: './src/www/index.html'
+        from: './src/www'
       }
     ],
     {
