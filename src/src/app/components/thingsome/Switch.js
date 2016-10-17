@@ -39,7 +39,7 @@ export default class Switch extends React.Component {
     return (
       <div>
         <section>
-          <Button onClick={this.props.prev} style={{margin: 'auto'}} label="Prev" />
+          <Button onClick={this.props.prev} style={{margin: 'auto'}} label="Back" />
 
           <Chip>
             <Avatar title="S" />

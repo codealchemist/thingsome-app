@@ -24,8 +24,14 @@ class App extends React.Component {
     return {
       welcome: <Welcome next={() => this.next()} prev={() => this.prev()} />,
       register1: <Register1 next={() => this.next()} prev={() => this.prev()} />,
-      deviceList: <DeviceList />
+      deviceList: <DeviceList startWizard={() => this.startWizard()} />
     };
+  }
+
+  startWizard() {
+    console.log('--- start wizard');
+    this.state.currentViewIndex = 1;
+    this.setState(this.state);
   }
 
   next() {
@@ -56,7 +62,7 @@ class App extends React.Component {
     // TODO: handle new device setup after first setup
 
     // show view list if already setup at least one device
-    if (!this.deviceList.isEmpty()) return views['deviceList'];
+    if (viewIndex === 0 && !this.deviceList.isEmpty()) return views['deviceList'];
 
     // no devices setup, let's welcome the user
     // and guide him thru the first device setup

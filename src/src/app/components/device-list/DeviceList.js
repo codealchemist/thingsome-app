@@ -3,6 +3,7 @@ import { List, ListItem, ListSubHeader, ListDivider, ListCheckbox } from 'react-
 import Storage from '../storage/Storage.js';
 import Info from '../info/Info.js';
 import Switch from '../thingsome/Switch.js';
+import TopRightButton from '../button/TopRightButton.js';
 
 class DeviceList extends React.Component {
   constructor() {
@@ -113,7 +114,9 @@ class DeviceList extends React.Component {
     return (
       <List selectable ripple>
         <ListSubHeader caption="Your Thingsome Devices" />
-          {devicesHtml}
+        <TopRightButton onClick={() => this.props.startWizard()} label="Add Thingsome" primary raised />
+
+        {devicesHtml}
       </List>
     )
   }
