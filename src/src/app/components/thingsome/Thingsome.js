@@ -1,16 +1,17 @@
-class Thingsome {
+export default class Thingsome {
   constructor(params) {
     params = params || {}
-    let {isAccessPoint=true, defaultAccessPointHost='http://192.168.4.1', stationHost=''} = params
+    let {ip='192.168.4.1', name, description, type, id} = params
 
-    this.defaultAccessPointHost = defaultAccessPointHost
-    this.isAccessPoint = isAccessPoint
-    this.stationHost = stationHost
+    this.ip = ip;
+    this.name = name;
+    this.description = description;
+    this.type = type;
+    this.id = id;
   }
 
   getHost() {
-    if (this.isAccessPoint) return this.defaultAccessPointHost
-    return this.stationHost
+    return `http://${this.ip}`
   }
 
   getSetupUrl({ssid, pass}) {
@@ -36,6 +37,12 @@ class Thingsome {
     let request = new Request(url)
     return fetch(request)
   }
-}
 
-export default Thingsome
+  setSwitch(state) {
+    let host = this.getHost();
+    let url = `${host}/set/${state}`;
+    console.log('--- set switch url:', url);
+    let request = new Request(url);
+    return fetch(request);
+  }
+}

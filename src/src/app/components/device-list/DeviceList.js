@@ -2,6 +2,7 @@ import React from 'react';
 import { List, ListItem, ListSubHeader, ListDivider, ListCheckbox } from 'react-toolbox/lib/list';
 import Storage from '../storage/Storage.js';
 import Info from '../info/Info.js';
+import Switch from '../thingsome/Switch.js';
 
 class DeviceList extends React.Component {
   constructor() {
@@ -102,7 +103,7 @@ class DeviceList extends React.Component {
   showDevice(device) {
     console.log('--- show device:', device);
     this.state.currentDevice = device;
-    this.state.currentView = 'info';
+    this.state.currentView = 'switch'; // 'info';
     this.setState(this.state);
   }
 
@@ -119,8 +120,10 @@ class DeviceList extends React.Component {
 
   getViews() {
     return {
-      default: this.getDefaultView(),
-      info: <Info {...this.state.currentDevice}
+      'default': this.getDefaultView(),
+      'switch': <Switch {...this.state.currentDevice}
+        prev={() => this.changeView('default')} />,
+      'info': <Info {...this.state.currentDevice}
         setDeviceName={(name) => this.setDeviceName(name)}
         prev={() => this.changeView('default')} />
     };

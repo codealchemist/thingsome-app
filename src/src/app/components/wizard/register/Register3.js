@@ -68,7 +68,7 @@ class Register3 extends React.Component {
             console.log('--- data:', data);
 
             this.props.setDeviceIp({
-              ip: data.ip
+              ip: data.ip.trim()
             });
             this.props.next();
           })
