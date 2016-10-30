@@ -91,7 +91,7 @@ class DeviceList extends React.Component {
     devicesHtml = devices.map((device) => {
       return <ListItem
         key={device.id}
-        avatar="/img/nodemcu.jpg"
+        avatar="img/nodemcu.jpg"
         caption={device.name}
         legend={device.type}
         rightIcon="star"

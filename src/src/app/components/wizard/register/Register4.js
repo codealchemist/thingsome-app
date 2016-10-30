@@ -12,7 +12,7 @@ class Register4 extends React.Component {
 
         <CardMedia
           aspectRatio="wide"
-          image="/img/nodemcu.jpg"
+          image="img/nodemcu.jpg"
         />
 
         <CardTitle

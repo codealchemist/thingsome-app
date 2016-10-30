@@ -5,7 +5,7 @@ export default class AvatarBert extends React.Component {
   render() {
     return (
       <CardTitle
-        avatar="/img/bert.jpg"
+        avatar="img/bert.jpg"
         title="Alberto Miranda"
         subtitle="Co-Founder @thingsome" />
     );

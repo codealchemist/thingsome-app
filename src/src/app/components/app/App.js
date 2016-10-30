@@ -2,7 +2,6 @@ import React from 'react';
 // import 'react-toolbox/lib/commons.scss';           // Import common styles
 import Header from '../header/Header.js';      // AppBar with simple overrides
 import SuccessButton from '../button/SuccessButton.js';    // A button with complex overrides
-import { Card, CardMedia, CardTitle, CardText, CardActions } from 'react-toolbox/lib/card';
 import Welcome from '../wizard/welcome/Welcome.js';
 import Register1 from '../wizard/register/Register1.js';
 import DeviceList from '../device-list/DeviceList.js';

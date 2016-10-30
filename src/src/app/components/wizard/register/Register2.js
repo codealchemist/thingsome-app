@@ -1,6 +1,7 @@
 import React from 'react';
 import SuccessButton from '../../button/SuccessButton.js';    // A button with complex overrides
-import { Card, CardMedia, CardTitle, CardText, CardActions } from 'react-toolbox/lib/card';
+import { Card, CardMedia, CardTitle, CardText } from 'react-toolbox/lib/card';
+import CenteredCardActions from '../../card/CenteredCardActions.js'
 import { Button } from 'react-toolbox/lib/button';
 import Dialog from 'react-toolbox/lib/dialog';
 import ProgressBar from 'react-toolbox/lib/progress_bar';
@@ -112,7 +113,7 @@ class Register2 extends React.Component {
 
           <CardMedia
             aspectRatio="wide"
-            image="/img/nodemcu.jpg"
+            image="img/nodemcu.jpg"
           />
 
           <Overlay active={this.state.isOverlayActive}>
@@ -134,10 +135,10 @@ class Register2 extends React.Component {
               Connect your computer to this access point.
 
             </CardText>
-            <CardActions>
+            <CenteredCardActions>
               <Button onClick={this.props.prev} style={{margin: 'auto'}} label="Prev" />
               <SuccessButton onClick={() => this.connect()} style={{margin: 'auto'}} label="Connect" primary raised />
-            </CardActions>
+            </CenteredCardActions>
           </Overlay>
         </Card>
       </div>

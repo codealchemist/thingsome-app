@@ -1,6 +1,7 @@
 import React from 'react';
 import SuccessButton from '../../button/SuccessButton.js';    // A button with complex overrides
-import { Card, CardMedia, CardTitle, CardText, CardActions } from 'react-toolbox/lib/card';
+import { Card, CardMedia, CardTitle, CardText } from 'react-toolbox/lib/card';
+import CenteredCardActions from '../../card/CenteredCardActions.js'
 import AvatarBert from '../../avatar/AvatarBert.js';
 
 class Welcome extends React.Component {
@@ -15,7 +16,7 @@ class Welcome extends React.Component {
 
         <CardMedia
           aspectRatio="wide"
-          image="/img/nodemcu.jpg"
+          image="img/nodemcu.jpg"
         />
 
         <CardTitle
@@ -28,9 +29,9 @@ class Welcome extends React.Component {
           Grab your Thingsome and get ready to have some fun! ;)
         </CardText>
 
-        <CardActions>
+        <CenteredCardActions>
           <SuccessButton onClick={this.props.next} style={{margin: 'auto'}} label="Let's start!" primary raised />
-        </CardActions>
+        </CenteredCardActions>
       </Card>
     )
   }

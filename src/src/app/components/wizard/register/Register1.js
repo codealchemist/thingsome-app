@@ -1,6 +1,7 @@
 import React from 'react';
 import SuccessButton from '../../button/SuccessButton.js';    // A button with complex overrides
-import { Card, CardMedia, CardTitle, CardText, CardActions } from 'react-toolbox/lib/card';
+import { Card, CardMedia, CardTitle, CardText } from 'react-toolbox/lib/card';
+import CenteredCardActions from '../../card/CenteredCardActions.js'
 import { Button } from 'react-toolbox/lib/button';
 import Register2 from '../register/Register2.js';
 import Register3 from '../register/Register3.js';
@@ -88,7 +89,7 @@ export default class Register1 extends ViewSequence {
 
         <CardMedia
           aspectRatio="wide"
-          image="/img/nodemcu.jpg"
+          image="img/nodemcu.jpg"
         />
 
         <CardTitle
@@ -100,10 +101,10 @@ export default class Register1 extends ViewSequence {
           Connect your Thingsome device to a power source.
         </CardText>
 
-        <CardActions>
+        <CenteredCardActions>
           <Button onClick={() => this.props.prev()} style={{margin: 'auto'}} label="Prev" />
           <SuccessButton onClick={() => this.next()} style={{margin: 'auto'}} label="Next" primary raised />
-        </CardActions>
+        </CenteredCardActions>
       </Card>
     )
   }

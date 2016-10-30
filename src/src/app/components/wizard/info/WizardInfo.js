@@ -1,6 +1,7 @@
 import React from 'react';
 import SuccessButton from '../../button/SuccessButton.js';    // A button with complex overrides
-import { Card, CardMedia, CardTitle, CardText, CardActions } from 'react-toolbox/lib/card';
+import { Card, CardMedia, CardTitle, CardText } from 'react-toolbox/lib/card';
+import CenteredCardActions from '../../card/CenteredCardActions.js'
 import { Button } from 'react-toolbox/lib/button';
 import Input from 'react-toolbox/lib/input';
 import Chip from 'react-toolbox/lib/chip';
@@ -34,7 +35,7 @@ export default class WizardInfo extends React.Component {
 
         <CardMedia
           aspectRatio="wide"
-          image="/img/nodemcu.jpg"
+          image="img/nodemcu.jpg"
         />
 
         <CardTitle
@@ -62,10 +63,10 @@ export default class WizardInfo extends React.Component {
           />
         </CardText>
 
-        <CardActions>
+        <CenteredCardActions>
           <Button onClick={this.props.prev} style={{margin: 'auto'}} label="Prev" />
           <SuccessButton onClick={() => this.saveName()} style={{margin: 'auto'}} label="Next" primary raised />
-        </CardActions>
+        </CenteredCardActions>
       </Card>
     )
   }
